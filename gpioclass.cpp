@@ -37,7 +37,8 @@ int GPIOClass::unexport_gpio() {
 	std::string unexport_string = "/sys/class/gpio/unexport";
 	std::ofstream unex_gpio(unexport_string.c_str());
 	if (unex_gpio < 0) {
-		std::cerr << "OPERATION FAILED: Unable to unexport GPIO" << m_gpioNum << "!" << std::endl;
+		std::cerr << "OPERATION FAILED: Unable to unexport GPIO"
+				<< m_gpioNum << "!" << std::endl;
 		return 1;
 	}
 
@@ -47,7 +48,8 @@ int GPIOClass::unexport_gpio() {
 }
 
 int GPIOClass::set_direction(std::string direction) {
-	std::string direction_path = "/sys/class/gpio/gpio" + m_gpioNum + "/direction";
+	std::string direction_path = "/sys/class/gpio/gpio" + m_gpioNum +
+			"/direction";
 	std::ofstream direction_gpio(direction_path.c_str());
 
 	if (direction_gpio < 0) {
@@ -62,6 +64,17 @@ int GPIOClass::set_direction(std::string direction) {
 }
 
 int GPIOClass::set_value(std::string value) {
+	std::string value_path = "/sys/class/gpio/gpio" + m_gpioNum + "/value";
+	std::ofstream gpio_value(value_path.c_str());
+
+	if (gpio_value < 0) {
+		std::cerr << "OPERATION FAILED: Unable to set the value for GPIO"
+						<< m_gpioNum << "!" << std::endl;
+		return -1;
+	}
+
+	gpio_value << value;
+	gpio_value.close();
 	return 0;
 }
 
