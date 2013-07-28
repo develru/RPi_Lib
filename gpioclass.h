@@ -18,7 +18,7 @@ public:
 	GPIOClass(std::string io);
 	int export_gpio();
 	int unexport_gpio();
-	int set_dir(std::string dir);
+	int set_direction(std::string direction);
 	int set_value(std::string value);
 	int get_value(std::string &value);
 	~GPIOClass();
