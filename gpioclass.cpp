@@ -63,12 +63,12 @@ int GPIOClass::set_direction(std::string direction) {
 	return 0;
 }
 
-int GPIOClass::set_value(std::string value) {
+int GPIOClass::write_value(std::string value) {
 	std::string value_path = "/sys/class/gpio/gpio" + m_gpioNum + "/value";
 	std::ofstream gpio_value(value_path.c_str());
 
 	if (gpio_value < 0) {
-		std::cerr << "OPERATION FAILED: Unable to set the value for GPIO"
+		std::cerr << "OPERATION FAILED: Unable to write the value for GPIO"
 						<< m_gpioNum << "!" << std::endl;
 		return -1;
 	}
@@ -78,7 +78,8 @@ int GPIOClass::set_value(std::string value) {
 	return 0;
 }
 
-int GPIOClass::get_value(std::string& value) {
+int GPIOClass::read_value(std::string& value) {
+	//TODO: Implement it
 	return 0;
 }
 

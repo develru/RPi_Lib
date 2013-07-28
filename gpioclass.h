@@ -19,8 +19,8 @@ public:
 	int export_gpio();
 	int unexport_gpio();
 	int set_direction(std::string direction);
-	int set_value(std::string value);
-	int get_value(std::string &value);
+	int write_value(std::string value);
+	int read_value(std::string &value);
 	~GPIOClass();
 
 	const std::string& get_gpio_num() const {
